@@ -2,8 +2,10 @@
 #include <cassert>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-void RestartGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4, Game& game)
+
+void RestartGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4, SMode5& smode5, SMode6& smode6, SMode7& smode7, SMode8& smode8, Game& game)
 {
+	game.StopSpawn = 0;
 	game.AppleEatSound.setBuffer(game.AppleEatbuffer);
 	game.DeathSound.setBuffer(game.DeathSoundbuffer);
 
@@ -36,6 +38,29 @@ void RestartGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4,
 	setSpriteSize(smode4.Mode4Sprite, Mode_SIZE, Mode_SIZE);
 	setSpriteOrigin(smode4.Mode4Sprite, 0.5f, 0.5f);
 
+	// mode5
+	smode5.position = { SCREEN_WIDTH - 70.5f , SCREEN_HEIGHT - 70.5f };
+	smode5.Mode5Sprite.setTexture(game.Mode5Texture);
+	setSpriteSize(smode5.Mode5Sprite, Mode_SIZE, Mode_SIZE);
+	setSpriteOrigin(smode5.Mode5Sprite, 0.5f, 0.5f);
+
+	// Imode6
+	smode6.position = { SCREEN_WIDTH / 11.5f, SCREEN_HEIGHT - 70.5f };
+	smode6.Mode6Sprite.setTexture(game.Mode6Texture);
+	setSpriteSize(smode6.Mode6Sprite, Mode_SIZE, Mode_SIZE);
+	setSpriteOrigin(smode6.Mode6Sprite, 0.5f, 0.5f);
+
+	// mode7
+	smode7.position = { SCREEN_WIDTH - 70.5f , SCREEN_HEIGHT / 9.5f };
+	smode7.Mode7Sprite.setTexture(game.Mode7Texture);
+	setSpriteSize(smode7.Mode7Sprite, Mode_SIZE, Mode_SIZE);
+	setSpriteOrigin(smode7.Mode7Sprite, 0.5f, 0.5f);
+
+	// mode8
+	smode8.position = { SCREEN_WIDTH / 11.5f, SCREEN_HEIGHT / 9.5f };
+	smode8.Mode8Sprite.setTexture(game.Mode8Texture);
+	setSpriteSize(smode8.Mode8Sprite, Mode_SIZE, Mode_SIZE);
+	setSpriteOrigin(smode8.Mode8Sprite, 0.5f, 0.5f);
 
 	// Init apples
 	for (int i = 0; i < NUM_APPLES; ++i)
@@ -62,10 +87,16 @@ void InitGame(Game& game)
 	assert(game.playerTexture.loadFromFile(RESOURCES_PATH + "\\Player.png"));
 	assert(game.AppleTexture.loadFromFile(RESOURCES_PATH + "\\Apple.png"));
 	assert(game.RockTexture.loadFromFile(RESOURCES_PATH + "\\Rock.png"));
+
 	assert(game.Mode1Texture.loadFromFile(RESOURCES_PATH + "\\Mode1.png"));
 	assert(game.Mode2Texture.loadFromFile(RESOURCES_PATH + "\\Mode2.png"));
 	assert(game.Mode3Texture.loadFromFile(RESOURCES_PATH + "\\Mode3.png"));
 	assert(game.Mode4Texture.loadFromFile(RESOURCES_PATH + "\\Mode4.png"));
+
+	assert(game.Mode5Texture.loadFromFile(RESOURCES_PATH + "\\Mode5.png"));
+	assert(game.Mode6Texture.loadFromFile(RESOURCES_PATH + "\\Mode6.png"));
+	assert(game.Mode7Texture.loadFromFile(RESOURCES_PATH + "\\Mode7.png"));
+	assert(game.Mode8Texture.loadFromFile(RESOURCES_PATH + "\\Mode8.png"));
 
 	if (!game.AppleEatbuffer.loadFromFile(RESOURCES_PATH + "\\AppleEat.wav"))
 	{
@@ -80,7 +111,7 @@ void InitGame(Game& game)
 	game.background.setFillColor(sf::Color::Black);
 	game.background.setPosition(0.f, 0.f);
 
-	RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game);
+	RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
 }
  
 void UpdateGame(Game& game, float deltaTime)
@@ -148,6 +179,15 @@ void UpdateGame(Game& game, float deltaTime)
 					game.player.speed += ACCELERATION;
 					game.AppleEatSound.play();
 				}
+				if (game.StopSpawn = true)
+				{
+					if (game.numEatenApples == 50)
+					{
+						game.isGameFinished = true;
+						game.timeSinceGameFinish = 0.f;
+						game.DeathSound.play();
+					}
+				}
 			}
 
 			// Find player collisions with rocks
@@ -183,7 +223,7 @@ void UpdateGame(Game& game, float deltaTime)
 				// Reset backgound
 				game.background.setFillColor(sf::Color::Black);
 
-				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game);
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
 			}
 		}
 	}
@@ -247,7 +287,7 @@ void UpdateGame(Game& game, float deltaTime)
 				game.isGameFinished = true;
 				game.isGame = true;
 				game.timeSinceGameFinish = 0.f;
-				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game);
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
 				game.isGame = true;
 				activeModes |= MODE_1;
 			}
@@ -258,7 +298,7 @@ void UpdateGame(Game& game, float deltaTime)
 				game.isGameFinished = true;
 				game.isGame = true;
 				game.timeSinceGameFinish = 0.f;
-				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game);
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
 				game.isGame = true;
 				activeModes |= MODE_2;
 			}
@@ -269,7 +309,7 @@ void UpdateGame(Game& game, float deltaTime)
 				game.isGameFinished = true;
 				game.isGame = true;
 				game.timeSinceGameFinish = 0.f;
-				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game);
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
 				game.isGame = true;
 				activeModes |= MODE_3;
 			}
@@ -280,9 +320,53 @@ void UpdateGame(Game& game, float deltaTime)
 				game.isGameFinished = true;
 				game.isGame = true;
 				game.timeSinceGameFinish = 0.f;
-				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game);
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
 				game.isGame = true;
 				activeModes |= MODE_4;
+			}
+			// mode5
+			if (IsRectanglesCollide(game.player.position, { PLAYER_SIZE, PLAYER_SIZE },
+				game.smode5.position, { Mode_SIZE, Mode_SIZE }))
+			{
+				game.isGameFinished = true;
+				game.isGame = true;
+				game.timeSinceGameFinish = 0.f;
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
+				game.isGame = true;
+				activeModes |= MODE_5;
+			}
+			// mode6
+			if (IsRectanglesCollide(game.player.position, { PLAYER_SIZE, PLAYER_SIZE },
+				game.smode6.position, { Mode_SIZE, Mode_SIZE }))
+			{
+				game.isGameFinished = true;
+				game.isGame = true;
+				game.timeSinceGameFinish = 0.f;
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
+				game.isGame = true;
+				activeModes |= MODE_6;
+			}
+			// mode7
+			if (IsRectanglesCollide(game.player.position, { PLAYER_SIZE, PLAYER_SIZE },
+				game.smode7.position, { Mode_SIZE, Mode_SIZE }))
+			{
+				game.isGameFinished = true;
+				game.isGame = true;
+				game.timeSinceGameFinish = 0.f;
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
+				game.isGame = true;
+				activeModes |= MODE_7;
+			}
+			// mode8
+			if (IsRectanglesCollide(game.player.position, { PLAYER_SIZE, PLAYER_SIZE },
+				game.smode8.position, { Mode_SIZE, Mode_SIZE }))
+			{
+				game.isGameFinished = true;
+				game.isGame = true;
+				game.timeSinceGameFinish = 0.f;
+				RestartGame(game.smode1, game.smode2, game.smode3, game.smode4, game.smode5, game.smode6, game.smode7, game.smode8, game);
+				game.isGame = true;
+				activeModes |= MODE_8;
 			}
 		}
 		if (activeModes & MODE_1)
@@ -305,10 +389,32 @@ void UpdateGame(Game& game, float deltaTime)
 			INITIAL_SPEED += PreSpeed;
 			PreSpeed = 0;
 		}
+		if (activeModes & MODE_5)
+		{
+			NUM_APPLES = 50;
+		}
+		if (activeModes & MODE_6)
+		{
+			NUM_APPLES = 50;
+			game.StopSpawn = true;
+			ACCELERATION = 0.f;
+		}
+		if (activeModes & MODE_7)
+		{
+			NUM_APPLES = 20;
+			ACCELERATION = 35.f;
+			INITIAL_SPEED += PreSpeed;
+			PreSpeed = 0;
+		}
+		if (activeModes & MODE_8)
+		{
+			NUM_APPLES = 50;
+			ACCELERATION = 0.f;
+		}
 	}
 }
 
-void DrawGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4, Game& game, sf::RenderWindow& window)
+void DrawGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4, SMode5& smode5, SMode6& smode6, SMode7& smode7, SMode8& smode8, Game& game, sf::RenderWindow& window)
 {
 	window.draw(game.background);
 	DrawPlayer(game.player, window);
@@ -316,10 +422,8 @@ void DrawGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4, Ga
 	{
 		for (int i = 0; i < NUM_APPLES; ++i)
 		{
-			//ModeSwith(game);
 			DrawApple(game.apples[i], window);
 		}
-
 		for (int i = 0; i < NUM_ROCKS; ++i)
 		{
 			DrawRock(game.rocks[i], window);
@@ -339,6 +443,18 @@ void DrawGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4, Ga
 		//mode4
 		smode4.Mode4Sprite.setPosition(smode4.position.x, smode4.position.y);
 		window.draw(smode4.Mode4Sprite);
+		//mode5
+		smode5.Mode5Sprite.setPosition(smode5.position.x, smode5.position.y);
+		window.draw(smode5.Mode5Sprite);
+		//mode6
+		smode6.Mode6Sprite.setPosition(smode6.position.x, smode6.position.y);
+		window.draw(smode6.Mode6Sprite);
+		//mode7
+		smode7.Mode7Sprite.setPosition(smode7.position.x, smode7.position.y);
+		window.draw(smode7.Mode7Sprite);
+		//mode8
+		smode8.Mode8Sprite.setPosition(smode8.position.x, smode8.position.y);
+		window.draw(smode8.Mode8Sprite);
 	}
 }
 
