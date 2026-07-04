@@ -49,7 +49,7 @@ int main()
 
 		// Draw game
 		window.clear();
-		DrawGame(game, window);
+		DrawGame(game.smode1, game.smode2, game.smode3, game.smode4, game, window);
 
 		window.display();
 	}
