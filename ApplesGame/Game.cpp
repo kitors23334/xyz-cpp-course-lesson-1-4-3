@@ -381,12 +381,12 @@ void UpdateGame(Game& game, float deltaTime)
 		if (activeModes & MODE_3)
 		{
 			NUM_APPLES = 20;
-			INITIAL_SPEED += PreSpeed;
+			ACCELERATION += PreSpeed;
 		}
 		if (activeModes & MODE_4)
 		{
 			NUM_APPLES = 50;
-			INITIAL_SPEED += PreSpeed;
+			ACCELERATION += PreSpeed;
 		}
 		if (activeModes & MODE_5)
 		{
@@ -402,7 +402,7 @@ void UpdateGame(Game& game, float deltaTime)
 		{
 			NUM_APPLES = 20;
 			ACCELERATION = 35.f;
-			INITIAL_SPEED += PreSpeed;
+			ACCELERATION += PreSpeed;
 		}
 		if (activeModes & MODE_8)
 		{

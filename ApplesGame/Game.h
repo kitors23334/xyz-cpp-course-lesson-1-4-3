@@ -21,7 +21,8 @@ struct Game
 	SMode8 smode8;
 
 	Player player;
-	Apple apples[Const_NUM_APPLES];
+	//Apple apples[Const_NUM_APPLES];
+	Apple* apples = new Apple[NUM_APPLES];
 	Rock rocks[NUM_ROCKS];
 
 
