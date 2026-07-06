@@ -8,6 +8,7 @@
 
 int main()
 {
+
 	int seed = (int)time(nullptr);
 	srand(seed);
 	// Init window

@@ -13,10 +13,11 @@ const float PAUSE_LENGTH = 3.f;
 const int NUM_ROCKS = 10;
 const float ROCK_SIZE = 20.f;
 const int Volume = 50;
-const int Const_NUM_APPLES = 500;
+const int Const_NUM_APPLES = 100;
 extern int NUM_APPLES;
 extern unsigned int activeModes;
-extern int PreSpeed;
+extern float PreSpeed;
+//extern int* apples;
 
 enum GameMode 
 {

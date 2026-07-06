@@ -7,7 +7,6 @@
 #include "Apple.h"
 #include "Rock.h"
 #include "ModeSwith.h"
-#include <vector>
 
 struct Game
 {

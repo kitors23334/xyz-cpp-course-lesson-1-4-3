@@ -12,6 +12,7 @@ void RestartGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4,
 	game.AppleEatSound.setVolume(Volume);
 	game.DeathSound.setVolume(Volume);
 
+
 	InitPlayer(game.player, game);
 
 	// mode1
@@ -179,7 +180,7 @@ void UpdateGame(Game& game, float deltaTime)
 					game.player.speed += ACCELERATION;
 					game.AppleEatSound.play();
 				}
-				if (game.StopSpawn = true)
+				if (game.StopSpawn == true)
 				{
 					if (game.numEatenApples == 50)
 					{
@@ -381,13 +382,11 @@ void UpdateGame(Game& game, float deltaTime)
 		{
 			NUM_APPLES = 20;
 			INITIAL_SPEED += PreSpeed;
-			PreSpeed = 0;
 		}
 		if (activeModes & MODE_4)
 		{
 			NUM_APPLES = 50;
 			INITIAL_SPEED += PreSpeed;
-			PreSpeed = 0;
 		}
 		if (activeModes & MODE_5)
 		{
@@ -404,7 +403,6 @@ void UpdateGame(Game& game, float deltaTime)
 			NUM_APPLES = 20;
 			ACCELERATION = 35.f;
 			INITIAL_SPEED += PreSpeed;
-			PreSpeed = 0;
 		}
 		if (activeModes & MODE_8)
 		{
