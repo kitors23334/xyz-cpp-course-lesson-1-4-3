@@ -28,7 +28,7 @@
     <ClCompile Include="constants.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="ModeSwith.cpp">
+    <ClCompile Include="LeaderBoard.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,7 +51,7 @@
     <ClInclude Include="Game.h">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="ModeSwith.h">
+    <ClInclude Include="LeaderBoard.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

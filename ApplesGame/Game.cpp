@@ -82,8 +82,14 @@ void RestartGame(SMode1& smode1, SMode2& smode2, SMode3& smode3, SMode4& smode4,
 
 void InitGame(Game& game)
 {
+
 	int seed = (int)time(nullptr);
 	srand(seed);
+
+	if (game.font.loadFromFile("C:/Windows/Fonts/arial.ttf"))
+	{
+
+	}
 
 	assert(game.playerTexture.loadFromFile(RESOURCES_PATH + "\\Player.png"));
 	assert(game.AppleTexture.loadFromFile(RESOURCES_PATH + "\\Apple.png"));

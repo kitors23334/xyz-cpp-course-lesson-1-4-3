@@ -7,6 +7,7 @@
 #include "Apple.h"
 #include "Rock.h"
 #include "ModeSwith.h"
+#include "LeaderBoard.h"
 
 struct Game
 {
@@ -19,6 +20,7 @@ struct Game
 	SMode6 smode6;
 	SMode7 smode7;
 	SMode8 smode8;
+	sf::Font font;
 
 	Player player;
 	//Apple apples[Const_NUM_APPLES];
