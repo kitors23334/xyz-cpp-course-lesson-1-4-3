@@ -34,6 +34,7 @@ struct Game
 	int numEatenApples = 0;
 	bool isGameFinished = false;
 	bool isGame = false;
+	bool isGamepause = false;
 	bool StopSpawn = false;
 	float timeSinceGameFinish = 0.f;
 	sf::RectangleShape background;

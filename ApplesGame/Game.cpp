@@ -128,51 +128,54 @@ void UpdateGame(Game& game, float deltaTime)
 		// Update game state
 		if (!game.isGameFinished)
 		{
-			// Handle input
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			if (game.isGamepause == false)
 			{
-				game.player.direction = PlayerDirection::Right;
-				playerRight(game.player);
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			{
-				game.player.direction = PlayerDirection::Up;
-				playerUp(game.player);
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				game.player.direction = PlayerDirection::Left;
-				playerLeft(game.player);
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			{
-				game.player.direction = PlayerDirection::Down;
-				playerDown(game.player);
-			}
+				// Handle input
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				{
+					game.player.direction = PlayerDirection::Right;
+					playerRight(game.player);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+				{
+					game.player.direction = PlayerDirection::Up;
+					playerUp(game.player);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				{
+					game.player.direction = PlayerDirection::Left;
+					playerLeft(game.player);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				{
+					game.player.direction = PlayerDirection::Down;
+					playerDown(game.player);
+				}
 
-			// Update player state
-			switch (game.player.direction)
-			{
-			case PlayerDirection::Right:
-			{
-				game.player.position.x += game.player.speed * deltaTime;
-				break;
-			}
-			case PlayerDirection::Up:
-			{
-				game.player.position.y -= game.player.speed * deltaTime;
-				break;
-			}
-			case PlayerDirection::Left:
-			{
-				game.player.position.x -= game.player.speed * deltaTime;
-				break;
-			}
-			case PlayerDirection::Down:
-			{
-				game.player.position.y += game.player.speed * deltaTime;
-				break;
-			}
+				// Update player state
+				switch (game.player.direction)
+				{
+				case PlayerDirection::Right:
+				{
+					game.player.position.x += game.player.speed * deltaTime;
+					break;
+				}
+				case PlayerDirection::Up:
+				{
+					game.player.position.y -= game.player.speed * deltaTime;
+					break;
+				}
+				case PlayerDirection::Left:
+				{
+					game.player.position.x -= game.player.speed * deltaTime;
+					break;
+				}
+				case PlayerDirection::Down:
+				{
+					game.player.position.y += game.player.speed * deltaTime;
+					break;
+				}
+				}
 			}
 
 			// Find player collisions with apples

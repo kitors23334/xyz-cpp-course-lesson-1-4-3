@@ -162,7 +162,6 @@
     <ClCompile Include="constants.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMain.cpp" />
-    <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rock.cpp" />
@@ -171,7 +170,6 @@
     <ClInclude Include="Apple.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rock.h" />

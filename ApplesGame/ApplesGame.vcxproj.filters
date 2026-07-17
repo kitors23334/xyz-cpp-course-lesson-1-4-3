@@ -28,9 +28,6 @@
     <ClCompile Include="constants.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="LeaderBoard.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -49,9 +46,6 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="LeaderBoard.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
